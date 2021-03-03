@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import Nav from './Navigation/Navigation';
+import PageBody from './Page/PageBody';
 
 const Routes = () => {
     return (
@@ -15,15 +16,20 @@ class App extends Component {
     render() {
         return (
             <Container>
+            <Router>
             <Row>
               <Col md={4}>LOGO</Col>
               <Col md={{ span: 4, offset: 4 }}>
-            <Router>
               <Routes />
-            </Router>
               </Col>
             </Row>
-          </Container>
+            <Row>
+              <Col>
+                <PageBody />
+              </Col>
+            </Row>
+            </Router>
+            </Container>
         )
     }
 }
