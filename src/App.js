@@ -4,23 +4,47 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import { Container, Row, Col } from 'react-bootstrap';
 
-import Nav from './Navigation/Navigation';
+//import Navigation from './Navigation/Navigation';
 import PageBody from './Page/PageBody';
 
-const Routes = () => {
-    return (
-        <Nav />
-    )
-}
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './global';
+import { theme } from './theme';
+
+import { Burger, Menu } from './Components';
+
+//const Routes = () => {
+//    return (
+//        <Navigation />
+//    )
+//}
+
 class App extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            open: false,
+            setOpen: this.openMenuHandler,
+        }
+       // this.openMenu = this.openMenu.bind(this);
+    }
+    openMenuHandler = () => {
+        this.setState(prevState => ({
+            open: !prevState.open
+        }));
+    }
     render() {
         return (
-            <Container>
+            <ThemeProvider theme={theme}>
+            <GlobalStyles />
             <Router>
+            <Burger open={this.state.open} setOpen={this.state.setOpen} />
+            <Menu open={this.state.open} setOpen={this.state.setOpen} />
+            <Container>
             <Row>
               <Col md={4}>LOGO</Col>
               <Col md={{ span: 4, offset: 4 }}>
-              <Routes />
+            { /* <Routes /> */ }
               </Col>
             </Row>
             <Row>
@@ -28,8 +52,9 @@ class App extends Component {
                 <PageBody />
               </Col>
             </Row>
-            </Router>
             </Container>
+            </Router>
+            </ThemeProvider>
         )
     }
 }
