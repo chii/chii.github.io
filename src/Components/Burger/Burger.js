@@ -3,11 +3,11 @@ import { StyledBurger } from './Burger.styled';
 import { bool, func } from 'prop-types';
 
 const Burger = ({ open, setOpen }) => {
-    return(
+    return (
         <StyledBurger open={open} onClick={() => setOpen(!open)}>
-          <div />
-          <div />
-          <div />
+            <div />
+            <div />
+            <div />
         </StyledBurger>
     )
 }
