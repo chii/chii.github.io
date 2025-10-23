@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useLocation } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import {AnimatePresence} from "framer-motion"
 
 import Index from '../Page/Index';
@@ -15,14 +15,14 @@ const PageBody = () => {
         // <></>について https://ja.reactjs.org/docs/fragments.html#short-syntax
         // <React.Fragment>の短縮形
         <>
-        <AnimatePresence exitBeforeEnter initial={true}>
-            <Switch location={location} key={rootPath}>
-                <Route exact path="/" component={Index} />
-                <Route exact path="/about" component={About} />
-                <Route exact path="/work" component={Work} />
-                <Route component={NotFound} />
-            </Switch>
-        </AnimatePresence>
+            <AnimatePresence exitBeforeEnter initial={true}>
+                <Routes location={location} key={rootPath}>
+                    <Route path="/" element={<Index />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/work" element={<Work />} />
+                    <Route component={NotFound} />
+                </Routes>
+            </AnimatePresence>
         </>
     )
 }
